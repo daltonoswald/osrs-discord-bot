@@ -33,7 +33,8 @@ async function fetchItemByName(item) {
 
 async function simKillcount(boss, kc) {
     try {
-        const response = Monsters.find(monster => monster.aliases.includes(boss)).kill(kc)
+        // boss = boss.toLowerCase()
+        const response = Monsters.find(monster => monster.aliases.includes(boss.toLowerCase())).kill(kc)
         // const response = Monsters.Vorkath.kill(kc);
         if (response) {
             console.log(`Results for ${kc} kills of ${boss}`)
@@ -67,7 +68,6 @@ async function wikiSearch(search) {
             console.log('Error fetching')
         }
     } catch (error) {
-        console.log('Error in catch')
         console.error(error)
     }
 }
@@ -80,6 +80,6 @@ async function wikiSearch(search) {
 // simKillcount('Nex', 50)
 // wikiSearch('drakes')
 
-simKillcount('kraken', 50)
+simKillcount('hunleff', 10)
 
 // console.log(Monsters.find(monster => monster.aliases.includes('corp')).kill(100))
