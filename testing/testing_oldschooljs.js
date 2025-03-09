@@ -1,5 +1,5 @@
 // import { Hiscores } from 'oldschooljs';
-const { Hiscores, Items, Monsters, Wiki } = require('oldschooljs')
+const { Hiscores, Items, Monsters, Wiki, Clues } = require('oldschooljs')
 
 async function fetchHiScores(username) {
     try {
@@ -16,9 +16,12 @@ async function fetchHiScores(username) {
     }
 }
 
+// fetchHiScores('Daithex')
+// fetchHiScores('daitheDaithe')
+
 async function fetchItemByName(item) {
     try {
-        const response = await Items.get(item);
+        const response = Items.get(item);
         if (response) {
             console.log(`Results for ${item}`)
             console.log(response)
@@ -31,9 +34,14 @@ async function fetchItemByName(item) {
     }
 }
 
+// fetchItemByName('Twisted Bow')
+// fetchItemByName('prayer potion(4')
+
 async function simKillcount(boss, kc) {
     try {
         // boss = boss.toLowerCase()
+        // boss = boss.charAt(0).toUpperCase() + String(level).slice(1).toLowerCase();
+        // console.log(boss.toLowerCase())
         const response = Monsters.find(monster => monster.aliases.includes(boss.toLowerCase())).kill(kc)
         // const response = Monsters.Vorkath.kill(kc);
         if (response) {
@@ -56,9 +64,38 @@ async function simKillcount(boss, kc) {
     }
 }
 
+// simKillcount('Vorkath', 10)
+// simKillcount("vyrewatch", 1000)
+simKillcount('cerb'. 10)
+
+async function simClue(level, kc) {
+    try {
+        level = level.charAt(0).toUpperCase() + String(level).slice(1).toLowerCase();
+        const response = Clues[level].open(kc);
+        if (response) {
+            console.log(`Results for ${kc} ${level} Clues`)
+            // console.log(response)
+            let loot = response.map
+            for (const [key, value] of loot) {
+                let name = Items.get(key)
+                loot.set(name.name, value)
+                if (typeof key === 'number') {
+                    loot.delete(key)
+                }
+            }
+            console.log(loot)
+        } else {
+            console.log('Error fetching')
+        }
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+// simClue('master', 10)
+
 async function wikiSearch(search) {
     try {
-        // const response = Monsters.find(monster => monster.name.aliases.includes(monster).kill(kc))
         const response = await Wiki.search(search)
         if (response) {
             console.log(`Results for ${search}`)
@@ -72,14 +109,4 @@ async function wikiSearch(search) {
     }
 }
 
-// fetchHiScores('Daithex')
-// fetchHiScores('daitheDaithe')
-// fetchItemByName('Twisted Bow')
-// fetchItemByName('prayer potion(4')
-// simKillcount('Vorkath', 1)
-// simKillcount('Nex', 50)
-// wikiSearch('drakes')
-
-simKillcount('hunleff', 10)
-
-// console.log(Monsters.find(monster => monster.aliases.includes('corp')).kill(100))
+// wikiSearch('tob')
