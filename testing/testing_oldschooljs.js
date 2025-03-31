@@ -16,7 +16,7 @@ async function fetchHiScores(username) {
     }
 }
 
-// fetchHiScores('Daithex')
+fetchHiScores('Daithex')
 // fetchHiScores('daitheDaithe')
 
 async function fetchItemByName(item) {
@@ -66,7 +66,7 @@ async function simKillcount(boss, kc) {
 
 // simKillcount('Vorkath', 10)
 // simKillcount("vyrewatch", 1000)
-simKillcount('cerb'. 10)
+// simKillcount('cerb', 10)
 
 async function simClue(level, kc) {
     try {
