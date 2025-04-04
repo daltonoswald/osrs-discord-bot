@@ -16,7 +16,7 @@ async function fetchHiScores(username) {
     }
 }
 
-fetchHiScores('Daithex')
+fetchHiScores('Daithex');
 // fetchHiScores('daitheDaithe')
 
 async function fetchItemByName(item) {
